@@ -7,7 +7,7 @@
 ## ✨ Features
 
 - 🔀 **Easy alias support** – Just chain `.alias("yourAlias")` when defining a command.
-- 🧠 **Privileged callback workaround** – Bypasses early execution issues by cleanly separating logic.
+- 🧠 **Privileged callback workaround** – Bypasses early execution issues by cleanly separating logic from metadata registration.
 
 ---
 
