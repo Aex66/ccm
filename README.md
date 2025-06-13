@@ -16,6 +16,7 @@
 
 ### 1. Register a Command
 
+`register_command_metadata.ts`:
 ```ts
 import { Command } from "./manager";
 
@@ -29,6 +30,7 @@ Command.register("greet")
 
 ### Register a Command Callback
 
+`greet_command.ts`: 
 ```ts
 import { Player } from "@minecraft/server"
 import { Command } from "./manager";
