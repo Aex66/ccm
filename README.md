@@ -16,7 +16,7 @@
 ### 1. Register a Command
 
 ```ts
-import { Command } from "./command";
+import { Command } from "./manager";
 
 Command.register("greet")
   .describe("Sends a greeting to a player")
@@ -30,7 +30,7 @@ Command.register("greet")
 
 ```ts
 import { Player } from "@minecraft/server"
-import { Command } from "./command";
+import { Command } from "./manager";
 Command.run('greet', (origin, message: string, target: Player[]) => {
   target.sendMessage(message)
 })
