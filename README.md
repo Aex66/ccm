@@ -7,6 +7,7 @@
 ## ✨ Features
 
 - 🔀 **Easy alias support** – Just chain `.alias("yourAlias")` when defining a command.
+- 🔐 Custom Requirements with `.requires()` - Sometimes you need more control than the built-in permission levels allow. Use `.requires()` to define a custom condition for whether a command can be executed.
 - 🧠 **Privileged callback workaround** – Bypasses early execution issues by cleanly separating logic from metadata registration.
 
 ---
