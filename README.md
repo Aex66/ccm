@@ -31,6 +31,7 @@ Command.register("greet")
 ```ts
 import { Player } from "@minecraft/server"
 import { Command } from "./manager";
+
 Command.run('greet', (origin, message: string, target: Player[]) => {
   target.sendMessage(message)
 })
