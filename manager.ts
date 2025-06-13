@@ -17,6 +17,8 @@ class CommandBuilder {
     public optionalParameters: CommandParameter[]
     public enums: Map<string, string[]>;
     public aliases: string[];
+    required?: (origin: CustomCommandOrigin) => boolean;
+
     constructor(
         public name: string
     ){
@@ -58,6 +60,23 @@ class CommandBuilder {
             throw new Error(`Invalid permission level: ${level}`);
         }
         this.permissionLevel = resolved;
+        return this;
+    }
+    /**
+     * Sets a custom requirement function that determines whether the command can be executed.
+     * 
+     * This allows for fine-grained control beyond basic permission levels. The function you provide
+     * receives the `CustomCommandOrigin` and must return `true` if the command is allowed to run,
+     * or `false` to block it.
+     * 
+     * @example
+     * Command.register("kick")
+     *   .requires(origin => origin.sourceType === CustomCommandSource.Entity && origin.sourceEntity instanceof Player && origin.sourceEntity.name === "Aex"); // Only allow Aex to use this command
+     * 
+     * @param required A predicate function that receives the command origin and returns a boolean.
+     */
+    requires(required: (origin: CustomCommandOrigin) => boolean) {
+        this.required = required;
         return this;
     }
 

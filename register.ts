@@ -1,11 +1,13 @@
-import { CustomCommand, CustomCommandStatus, system } from "@minecraft/server";
+import { CustomCommandStatus, system } from "@minecraft/server";
 import { Logger } from "./logger";
 import { Command, commands } from "./manager";
 import CME from "./main"
+import { CommandBuilder } from "./types";
 system.beforeEvents.startup.subscribe((start) => {
 
-    function register(command: CustomCommand, parent?: string){
+    function register(command: CommandBuilder, parent?: string){
         start.customCommandRegistry.registerCommand({ ...command, name: `${Command.prefix ?? 'ccm'}:${command.name}`}, (origin, ...args) => {
+            if (command?.required && !command.required(origin)) return { status: CustomCommandStatus.Failure, message: `§cYou are not allowed to use this command`}
             const name = parent ?? command.name
             system.run(() => CME.emit({ name, origin, args }))
             return { status: CustomCommandStatus.Success }
