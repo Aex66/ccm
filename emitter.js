@@ -1,28 +1,26 @@
-type Listener<T> = (event: T) => void;
-export class EventEmitter<T> {
-    private listeners: Listener<T>[] = [];
-    static EventPriority = {
-        LOW: 1,
-        HIGH: 2
+export class EventEmitter {
+    constructor() {
+        this.listeners = [];
     }
-
-    subscribe(listener: Listener<T>, priority: keyof typeof EventEmitter.EventPriority = "LOW") {
+    subscribe(listener, priority = "LOW") {
         const priorityValue = EventEmitter.EventPriority[priority];
-
         if (priorityValue === EventEmitter.EventPriority.HIGH) {
             this.listeners.unshift(listener);
-        } else {
+        }
+        else {
             this.listeners.push(listener);
         }
     }
-
-    unsubscribe(listener: Listener<T>) {
+    unsubscribe(listener) {
         this.listeners = this.listeners.filter(l => l !== listener);
     }
-
-    emit(event: T) {
+    emit(event) {
         for (const listener of this.listeners) {
             listener(event);
         }
     }
 }
+EventEmitter.EventPriority = {
+    LOW: 1,
+    HIGH: 2
+};
