@@ -36,3 +36,15 @@ Command.run('greet', (origin, message: string, target: Player[]) => {
   target.sendMessage(message)
 })
 ```
+
+## 📥 Installation
+
+### Typescript version:
+1. Open a new terminal in the folder you want to install ccm
+2. Execute the command `git clone https://github.com/Aex66/ccm`
+3. Import `ccm/main.ts` into your entry file.
+
+### Javascript version:
+1. Open a new terminal in the folder you want to install ccm
+2. Execute the command `git clone -b mainjs --single-branch https://github.com/Aex66/ccm`
+3. Import `ccm/main.js` into your entry file.
